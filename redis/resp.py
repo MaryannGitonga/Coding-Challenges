@@ -5,7 +5,10 @@ class RESP():
         elif message[0] == '-':
             return message[1:].strip()
         elif message[0] == ':':
-            return 'integer'
+            if message[1] == '+':
+                return int(message[2:].strip())
+            else:
+                return int(message[1:].strip())
         elif message[0] == '$':
             return 'bulk string'
         elif message[0] == '*':

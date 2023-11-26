@@ -10,6 +10,10 @@ class TestRedis(unittest.TestCase):
 
         self.assertEqual(resp_instance.deserialize('-Error message\r\n'), 'Error message')
 
+        self.assertEqual(resp_instance.deserialize(':0\r\n'), 0)
+        self.assertEqual(resp_instance.deserialize(':-1000\r\n'), -1000)
+        self.assertEqual(resp_instance.deserialize(':+1000\r\n '), 1000)
+
         # self.assertEqual(resp_instance.deserialize('$-1\r\n'), 'bulk string')
         # self.assertEqual(resp_instance.deserialize('*1\r\n$4\r\nping\r\n'), 'array')
         # self.assertEqual(resp_instance.deserialize('*2\r\n$4\r\necho\r\n$11\r\nhello world\r\n'), 'array')
