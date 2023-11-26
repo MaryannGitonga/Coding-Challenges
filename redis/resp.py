@@ -3,7 +3,7 @@ class RESP():
         if message[0] == '+':
             return message[1:].strip()
         elif message[0] == '-':
-            return 'error'
+            return message[1:].strip()
         elif message[0] == ':':
             return 'integer'
         elif message[0] == '$':
